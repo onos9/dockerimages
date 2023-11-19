@@ -1,0 +1,35 @@
+name: Docker CI
+
+on:
+  push:
+    branches: [ master ]
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        
+      - name: Build & push website image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: php-fpm
+          tags: latest
+          registry: ghcr.io
+          dockerfile: ./website/Dockerfile
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_PAT }}
+      
+      - name: Build & push webapp image
+        uses: mr-smithers-excellent/docker-build-push@v6
+        with:
+          image: caveapp
+          tags: latest
+          registry: ghcr.io
+          dockerfile: ./apps/webapp/Dockerfile
+          username: ${{ github.actor }}
+          password: ${{ secrets.GH_PAT }}
