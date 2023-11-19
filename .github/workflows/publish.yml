@@ -20,16 +20,16 @@ jobs:
           image: php-fpm
           tags: latest
           registry: ghcr.io
-          dockerfile: ./website/Dockerfile
+          dockerfile: ./php-fpm/Dockerfile
           username: ${{ github.actor }}
           password: ${{ secrets.GH_PAT }}
       
       - name: Build & push webapp image
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
-          image: caveapp
+          image: postgres
           tags: latest
           registry: ghcr.io
-          dockerfile: ./apps/webapp/Dockerfile
+          dockerfile: ./postgres/Dockerfile
           username: ${{ github.actor }}
           password: ${{ secrets.GH_PAT }}
