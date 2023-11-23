@@ -1,4 +1,4 @@
-FROM php:8.1-fpm-alpine
+FROM php:8.1.9-fpm-alpine
 
 ENV user=www
 ENV uid=1000
