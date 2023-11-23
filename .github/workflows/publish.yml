@@ -18,7 +18,7 @@ jobs:
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
           image: php-fpm
-          tags: 8.1
+          tags: 8.1.9
           registry: ghcr.io
           dockerfile: ./php-fpm-8.1/Dockerfile
           username: ${{ github.actor }}
