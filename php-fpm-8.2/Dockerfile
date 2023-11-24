@@ -20,5 +20,6 @@ RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" && touch "$PHP_INI_DIR/conf.d/custom.ini"
 WORKDIR /var/www/html
 USER $USER
