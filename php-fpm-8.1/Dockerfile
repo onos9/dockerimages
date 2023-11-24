@@ -19,6 +19,7 @@ RUN IPE_GD_WITHOUTAVIF=1 docker-php-ext-install -j$(nproc) gd pdo_mysql bcmath m
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
-
+    
+RUN mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini"
 WORKDIR /var/www/html
 USER $USER
