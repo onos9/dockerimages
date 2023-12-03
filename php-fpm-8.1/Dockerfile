@@ -13,7 +13,7 @@ RUN apk add --no-cache curl zip unzip shadow \
     icu-dev \
     freetype-dev 
 
-RUN IPE_GD_WITHOUTAVIF=1 docker-php-ext-install -j$(nproc) gd pdo_mysql bcmath mysqli opcache zip intl \
+RUN IPE_GD_WITHOUTAVIF=1 docker-php-ext-install -j$(nproc) gd pdo_mysql calendar bcmath mysqli opcache zip intl \
     && docker-php-source delete
 
 RUN useradd -G www-data,root -u $uid -d /home/$user $user
